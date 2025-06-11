@@ -1,0 +1,53 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-issuer
+  annotations:
+    owner: "Evgenii Kalkutin"
+    purpose: "Development Self-Signed Certificates"
+spec:
+  selfSigned:
+    crlDistributionPoints: []
+---
+
+
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: selfsigned-ca
+  namespace: cert-manager
+  annotations:
+    owner: "Evgenii Kalkutin"
+    environment: "Development"
+    website: "kalkutin.dev"
+spec:
+  isCA: true
+  commonName: "Development CA"
+  subject:
+    organizations:
+      - "E. Kalkutin Development"
+    countries:
+      - "RU"
+    organizationalUnits:
+      - "Home K8s Cluster"
+  duration: 8760h
+  secretName: selfsigned-ca-key-pair
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: selfsigned-issuer
+    kind: ClusterIssuer
+---
+
+
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: selfsigned-ca-issuer
+  annotations:
+    owner: "Evgenii Kalkutin"
+    purpose: "Development CA Issuer"
+spec:
+  ca:
+    secretName: selfsigned-ca-key-pair
