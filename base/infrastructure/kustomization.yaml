@@ -3,3 +3,7 @@ kind: Kustomization
 
 resources:
   - github-actions/
+  - ssl/
+  - ingress-nginx/
+  - storage/
+  - portainer/
