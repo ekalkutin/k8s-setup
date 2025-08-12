@@ -11,11 +11,18 @@ spec:
     metadata:
       labels: { app: n8n }
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: md-worker-0.kalkutin.dev
       containers:
         - name: n8n
           image: n8nio/n8n:latest
           ports:
             - containerPort: 5678
+          env:
+            - name: N8N_PROTOCOL
+              value: https
+            - name: N8N_HOST
+              value: n8n.kalkutin.dev
           volumeMounts:
             - name: data
               mountPath: /home/node/.n8n
