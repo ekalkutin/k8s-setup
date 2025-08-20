@@ -23,6 +23,8 @@ spec:
               value: https
             - name: N8N_HOST
               value: n8n.kalkutin.dev
+            - name: WEBHOOK_URL
+              value: "https://n8n.kalkutin.dev/"
           volumeMounts:
             - name: data
               mountPath: /home/node/.n8n
