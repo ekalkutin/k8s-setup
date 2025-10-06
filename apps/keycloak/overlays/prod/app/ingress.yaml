@@ -11,7 +11,7 @@ spec:
   tls:
     - hosts:
         - keycloak.kalkutin.dev
-      secretName: kalkutin-dev-tls-secret
+      secretName: keycloak-kalkutin-dev-tls
   rules:
     - host: keycloak.kalkutin.dev
       http:
