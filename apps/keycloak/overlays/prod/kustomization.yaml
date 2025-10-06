@@ -1,0 +1,16 @@
+# apps/resume/overlays/dev/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: apps-prod
+
+resources:
+  - ../../base
+  - app/ingress.yaml
+  # - app/keycloak-config.yaml
+  # - app/keycloak-secrets.yaml
+
+patches:
+  - path: app/deployment-patch.yaml
+  - path: db/deployment-patch.yaml
+  - path: db/pvc-patch.yaml
