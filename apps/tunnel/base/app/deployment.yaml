@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tunnel
-  namespace: applications
 spec:
   replicas: 1
   selector:
@@ -13,8 +12,6 @@ spec:
       labels:
         app: tunnel
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: md-worker-0.kalkutin.dev
       containers:
         - name: tunnel
           image: ekalkutin/tunnel:latest

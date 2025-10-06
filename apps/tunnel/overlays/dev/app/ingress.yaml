@@ -1,13 +1,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: resume-ingress
+  name: tunnel-ingress
   namespace: applications
   labels:
-    app: resume
+    app: tunnel
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/configuration-snippet: |
       # Default cache for all requests
       add_header Cache-Control "public, max-age=2592000";   # 1 month
@@ -19,16 +19,16 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - kalkutin.dev
-      secretName: kalkutin-dev-tls-secret
+        - tunnel.kalkutin.dev
+      secretName: tunnel-kalkutin-dev-tls
   rules:
-    - host: kalkutin.dev
+    - host: tunnel.kalkutin.dev
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: resume-service
+                name: tunnel-service
                 port:
                   number: 3000

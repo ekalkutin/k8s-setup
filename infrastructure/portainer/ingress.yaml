@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  namespace: applications
+  namespace: infrastructure
   name: portainer-ingress
   labels:
     app: portainer
@@ -13,7 +13,7 @@ spec:
   tls:
     - hosts:
         - portainer.kalkutin.dev
-      secretName: kalkutin-dev-tls-secret
+      secretName: portainer-kalkutin-dev-tls
   rules:
     - host: portainer.kalkutin.dev
       http:

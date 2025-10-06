@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tunnel
+spec:
+  replicas: 1
+  template:
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: md-worker-0.kalkutin.dev

@@ -2,12 +2,12 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: github-actions-deployer
-  namespace: applications
+  namespace: infrastructure
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: edit
 subjects:
-- kind: ServiceAccount
-  name: github-actions
-  namespace: applications
+  - kind: ServiceAccount
+    name: github-actions
+    namespace: infrastructure

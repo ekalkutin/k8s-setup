@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: crio-image-cleaner
-  namespace: applications
+  namespace: infrastructure
 spec:
   selector:
     matchLabels:
