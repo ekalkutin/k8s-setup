@@ -5,3 +5,4 @@ resources:
   - resume/
   - n8n/
   - tunnel/
+  - keycloak/
