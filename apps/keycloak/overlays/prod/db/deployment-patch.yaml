@@ -3,15 +3,8 @@ kind: Deployment
 metadata:
   name: keycloak-postgres
 spec:
+  replicas: 1
   template:
     spec:
-      containers:
-        - name: postgres
-          image: postgres:latest
-          resources:
-            limits:
-              cpu: 1000m
-              memory: 1Gi
-            requests:
-              cpu: 500m
-              memory: 512Mi
+      nodeSelector:
+        kubernetes.io/hostname: ru-worker-0.kalkutin.dev

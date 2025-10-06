@@ -6,4 +6,3 @@ resources:
   - db/pvc.yaml
   - app/service.yaml
   - app/deployment.yaml
-  - postgres-ephemeral.yaml

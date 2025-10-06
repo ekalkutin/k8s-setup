@@ -7,8 +7,8 @@ namespace: apps-prod
 resources:
   - ../../base
   - app/ingress.yaml
-  - app/keycloak-config.yaml
-  - app/keycloak-secrets.yaml
+  # - app/keycloak-config.yaml
+  # - app/keycloak-secrets.yaml
 
 patches:
   - path: app/deployment-patch.yaml
