@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: infrastructure
+  name: portainer-ingress
+  labels:
+    app: portainer
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - portainer.kalkutin.dev
+      secretName: portainer-kalkutin-dev-tls
+  rules:
+    - host: portainer.kalkutin.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: portainer-service
+                port:
+                  number: 9000

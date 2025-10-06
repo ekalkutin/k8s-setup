@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: crio-image-cleaner
+  namespace: infrastructure
+spec:
+  selector:
+    matchLabels:
+      app: crio-image-cleaner
+  template:
+    metadata:
+      labels:
+        app: crio-image-cleaner
+    spec:
+      hostPID: true
+      tolerations:
+        - operator: "Exists"
+      restartPolicy: Always
+      containers:
+        - name: crio-cleaner
+          image: alpine:3.20
+          securityContext:
+            privileged: true
+          command:
+            - sh
+            - -c
+            - |
+              echo "=== Installing crictl ==="
+              wget -qO- https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.31.1/crictl-v1.31.1-linux-amd64.tar.gz | tar zx -C /usr/local/bin
+              echo "=== Cleaning unused CRI-O images on $(hostname) ==="
+              crictl --runtime-endpoint unix:///var/run/crio/crio.sock rmi --prune || echo "Some images could not be deleted (likely in use)"
+              echo "=== Done on $(hostname). Sleeping to keep pod alive ==="
+              sleep 86400
+          volumeMounts:
+            - name: criosock
+              mountPath: /var/run/crio/crio.sock
+      volumes:
+        - name: criosock
+          hostPath:
+            path: /var/run/crio/crio.sock
+            type: Socket
