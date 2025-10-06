@@ -12,3 +12,5 @@ resources:
 
 patches:
   - path: app/deployment-patch.yaml
+  - path: db/deployment-patch.yaml
+  - path: db/pvc-patch.yaml
