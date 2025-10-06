@@ -17,17 +17,20 @@ spec:
           image: postgres:latest
           env:
             - name: POSTGRES_DB
-              value: keycloak
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: POSTGRES_DB
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-db-secret
-                  key: username
+                  name: keycloak-secrets
+                  key: POSTGRES_USER
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-db-secret
-                  key: password
+                  name: keycloak-secrets
+                  key: POSTGRES_PASSWORD
           ports:
             - containerPort: 5432
           volumeMounts:
