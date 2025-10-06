@@ -9,8 +9,6 @@ spec:
   selfSigned:
     crlDistributionPoints: []
 ---
-
-
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -39,8 +37,6 @@ spec:
     name: selfsigned-issuer
     kind: ClusterIssuer
 ---
-
-
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:

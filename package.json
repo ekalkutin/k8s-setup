@@ -1,0 +1,22 @@
+{
+  "name": "k8s-setup",
+  "description": "🚀 A comprehensive Kubernetes home lab running self-hosted applications including identity management, automation, and personal projects. Built with GitOps principles using Kustomize for Infrastructure as Code (IaC).",
+  "scripts": {
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekalkutin/k8s-setup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ekalkutin/k8s-setup/issues"
+  },
+  "homepage": "https://github.com/ekalkutin/k8s-setup#readme",
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}

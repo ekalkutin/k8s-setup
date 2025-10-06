@@ -18,7 +18,6 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: node-role.kubernetes.io/load-balancer
-                operator: Exists
-
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/load-balancer
+                    operator: Exists
