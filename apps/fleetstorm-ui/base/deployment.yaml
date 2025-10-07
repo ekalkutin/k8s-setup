@@ -16,7 +16,7 @@ spec:
         - name: fleetstorm-ui
           image: ekalkutin/fleetstorm-ui:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 80
           resources:
             requests:
               cpu: "100m"
@@ -26,7 +26,7 @@ spec:
               memory: "1Gi"
           livenessProbe:
             httpGet:
-              path: /healthz
-              port: 3000
+              path: /
+              port: 80
             initialDelaySeconds: 30
             periodSeconds: 10
