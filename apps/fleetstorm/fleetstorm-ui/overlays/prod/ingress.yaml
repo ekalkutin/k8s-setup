@@ -31,3 +31,10 @@ spec:
                 name: fleetstorm-ui-service
                 port:
                   number: 3000
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: fleetstorm-core-service
+                port:
+                  number: 3000
