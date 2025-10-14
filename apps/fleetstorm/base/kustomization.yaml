@@ -3,5 +3,7 @@ kind: Kustomization
 resources:
   - core-deployment.yaml
   - ui-deployment.yaml
+  - landing-deployment.yaml
   - core-service.yaml
   - ui-service.yaml
+  - landing-service.yaml

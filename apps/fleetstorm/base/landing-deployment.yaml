@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fleetstorm-landing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fleetstorm-landing
+  template:
+    metadata:
+      labels:
+        app: fleetstorm-landing
+    spec:
+      containers:
+        - name: fleetstorm-landing
+          image: ekalkutin/fleetstorm-landing:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "512Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10

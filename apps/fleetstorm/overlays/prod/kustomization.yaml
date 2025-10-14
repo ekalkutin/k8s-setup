@@ -11,3 +11,4 @@ resources:
 patches:
   - path: core-deployment-patch.yaml
   - path: ui-deployment-patch.yaml
+  - path: landing-deployment-patch.yaml
