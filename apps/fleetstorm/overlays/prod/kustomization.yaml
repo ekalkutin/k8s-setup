@@ -6,7 +6,8 @@ namespace: apps-prod
 
 resources:
   - ../../base
-  - ingress.yaml
+  - app-ingress.yaml
+  - landing-ingress.yaml
 
 patches:
   - path: core-deployment-patch.yaml

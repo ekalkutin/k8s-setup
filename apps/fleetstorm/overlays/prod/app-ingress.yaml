@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: fleetstorm-ingress
+  name: fleetstorm-app-ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -16,20 +16,13 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - fleetstorm.kalkutin.dev
-      secretName: kalkutin-dev-tls
+        - app.fleetstorm.kalkutin.dev
+      secretName: fleetstorm-app-tls
   rules:
-    - host: fleetstorm.kalkutin.dev
+    - host: app.fleetstorm.kalkutin.dev
       http:
         paths:
           - path: /
-            pathType: Exact
-            backend:
-              service:
-                name: fleetstorm-landing-service
-                port:
-                  number: 3000
-          - path: /app
             pathType: Prefix
             backend:
               service:
