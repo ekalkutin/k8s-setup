@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: x-lance-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      # Default cache for all requests
+      add_header Cache-Control "public, max-age=2592000";   # 1 month
+      # Override for specific file types
+      if ($request_uri ~* \.(css|webp)$) { 
+        add_header Cache-Control "public, max-age=2592000"; # 1 monthy
+      }
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - x-lance.kalkutin.dev
+      secretName: x-lance-prod-tls
+  rules:
+    - host: x-lance.kalkutin.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: x-lance-service
+                port:
+                  number: 80
